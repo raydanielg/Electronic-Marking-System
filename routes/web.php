@@ -437,12 +437,24 @@ Route::get('/results/{type}/{year}/{exam}/schools/{school}', function (string $t
     ]);
 })->name('landing.results.school');
 
-Auth::routes(['register' => false, 'reset' => false]);
-
 Route::middleware(['throttle.login:5,15'])->group(function () {
     Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+    Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+    Route::get('/account-deletion-request', function () {
+        return view('auth.account-deletion-request');
+    })->name('account-deletion-request');
+
+    Route::get('/password/reset', [App\Http\Controllers\Auth\PasswordResetController::class, 'showRequestForm'])->name('password.request');
+    Route::post('/password/send-code', [App\Http\Controllers\Auth\PasswordResetController::class, 'sendCode'])->name('password.send-code');
+    Route::get('/password/verify/{email}', [App\Http\Controllers\Auth\PasswordResetController::class, 'showVerifyForm'])->name('password.verify');
+    Route::post('/password/verify-code', [App\Http\Controllers\Auth\PasswordResetController::class, 'verifyCode'])->name('password.verify.code');
+    Route::get('/password/reset/{email}', [App\Http\Controllers\Auth\PasswordResetController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/password/reset-password', [App\Http\Controllers\Auth\PasswordResetController::class, 'resetPassword'])->name('password.reset.password');
 });
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth:manager', 'throttle:10,1'])->prefix('auth')->name('auth.')->group(function () {
     Route::get('/sessions', [App\Http\Controllers\Auth\SessionsController::class, 'index'])->name('sessions');

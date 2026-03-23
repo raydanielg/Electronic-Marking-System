@@ -54,7 +54,15 @@ class ProfileController extends Controller
     public function requestDeletion(Request $request)
     {
         $request->validate([
-            'reason' => 'required|string|min:10',
+            'reason' => 'required|string|min:10|max:1000',
+            'details' => 'nullable|string|max:2000',
+            'confirm' => 'accepted',
+        ], [
+            'reason.required' => 'Please provide a reason for account deletion.',
+            'reason.min' => 'Reason must be at least 10 characters.',
+            'reason.max' => 'Reason is too long.',
+            'details.max' => 'Details are too long.',
+            'confirm.accepted' => 'You must confirm that you understand this action is permanent.',
         ]);
 
         $user = Auth::guard('manager')->user();
@@ -63,11 +71,16 @@ class ProfileController extends Controller
             'user_id' => $user->id,
             'user_type' => 'manager',
             'reason' => $request->reason,
+            'details' => $request->details,
             'status' => 'pending',
             'requested_at' => now(),
         ]);
 
-        return back()->with('success', 'Your account deletion request has been submitted and is being processed.');
+        Auth::guard('manager')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Your account deletion request has been submitted and is being processed.');
     }
 
     public function updatePhoto(Request $request)

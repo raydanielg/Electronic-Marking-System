@@ -104,6 +104,10 @@
         border-radius: 4px;
         padding: 12px;
         margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.5rem;
+        letter-spacing: 0.5rem;
+        font-weight: bold;
     }
     .btn-login {
         background-color: #2b5a8e;
@@ -159,20 +163,23 @@
     </div>
     <div class="login-right" data-aos="fade-left">
         <img src="{{ asset('Coat_of_arms_of_Tanzania.svg.png') }}" alt="Coat of Arms" class="coat-of-arms animate__animated animate__zoomIn">
-        <h2 class="animate__animated animate__fadeIn">Forgot Password</h2>
+        <h2 class="animate__animated animate__fadeIn">Verify Reset Code</h2>
         
-        <form method="POST" action="{{ route('password.send-code') }}" style="width: 100%;" class="animate__animated animate__fadeInUp animate__delay-1s">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('password.verify.code') }}" style="width: 100%;" class="animate__animated animate__fadeInUp animate__delay-1s">
             @csrf
 
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+            <input type="hidden" name="email" value="{{ $email }}">
 
             <div class="mb-3">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address" autofocus>
-                @error('email')
+                <label for="code" class="form-label" style="font-weight: bold; color: #1f2937;">Enter the 6-digit code sent to your email</label>
+                <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" required maxlength="6" placeholder="000000" autofocus>
+                @error('code')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -180,13 +187,13 @@
             </div>
 
             <button type="submit" class="btn btn-login">
-                Send Password Reset Code
+                Verify Code
             </button>
 
             <div class="text-center mt-4 pt-3 border-top">
-                <span class="text-muted" style="font-size: 0.85rem;">Remember your password?</span>
-                <a class="login-link" href="{{ route('login') }}">
-                    Login Here
+                <span class="text-muted" style="font-size: 0.85rem;">Didn't receive code?</span>
+                <a class="login-link" href="{{ route('password.request') }}">
+                    Resend Code
                 </a>
             </div>
         </form>
