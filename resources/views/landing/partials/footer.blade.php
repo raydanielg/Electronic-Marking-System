@@ -70,8 +70,8 @@
             <div class="col-lg-6">
                 <h4 class="footer-title">Stay Updated</h4>
                 <p class="footer-desc" style="margin-bottom: 14px;">Subscribe for announcements, new features, and updates.</p>
-                <form class="footer-newsletter" onsubmit="return false;">
-                    <input class="footer-input" type="email" placeholder="Your email address" aria-label="Email address">
+                <form class="footer-newsletter">
+                    <input class="footer-input" type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
                     <button class="footer-btn" type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
                 </form>
             </div>

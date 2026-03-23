@@ -7,12 +7,15 @@ use App\Http\Controllers\Manager\SettingController;
 use App\Http\Controllers\Manager\StudentController;
 use App\Models\NewsPost;
 use App\Models\ResearchPost;
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Schema;
 
 // Landing page
 Route::get('/', function () {
     return view('landing.index');
 })->name('landing');
+
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 Route::get('/about', function () {
     return view('landing.about');

@@ -2302,6 +2302,81 @@
                 }
             };
 
+            // --- Newsletter Subscription Logic ---
+            const newsletterForm = document.querySelector('.footer-newsletter');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const emailInput = this.querySelector('input[name="email"]');
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalBtnContent = submitBtn.innerHTML;
+                    
+                    // Create message element if not exists
+                    let msgDiv = document.getElementById('newsletter-message');
+                    if (!msgDiv) {
+                        msgDiv = document.createElement('div');
+                        msgDiv.id = 'newsletter-message';
+                        msgDiv.style.marginTop = '10px';
+                        msgDiv.style.fontSize = '0.85rem';
+                        msgDiv.style.borderRadius = '8px';
+                        msgDiv.style.padding = '8px 12px';
+                        newsletterForm.parentNode.insertBefore(msgDiv, newsletterForm.nextSibling);
+                    }
+                    
+                    // Reset message
+                    msgDiv.style.display = 'none';
+                    msgDiv.className = '';
+                    
+                    // Validation
+                    if (!emailInput.value) {
+                        msgDiv.textContent = 'Tafadhali weka barua pepe yako.';
+                        msgDiv.style.color = '#ef4444';
+                        msgDiv.style.display = 'block';
+                        return;
+                    }
+                    
+                    // Loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inatuma...';
+                    
+                    // AJAX Request
+                    fetch('{{ route("newsletter.subscribe") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ email: emailInput.value })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        msgDiv.textContent = data.message;
+                        msgDiv.style.display = 'block';
+                        
+                        if (data.success) {
+                            msgDiv.style.color = '#4ade80';
+                            msgDiv.style.backgroundColor = 'rgba(74, 222, 128, 0.1)';
+                            emailInput.value = '';
+                        } else {
+                            msgDiv.style.color = '#ef4444';
+                            msgDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                        }
+                    })
+                    .catch(error => {
+                        msgDiv.textContent = 'Kumeshindikana kuunganisha na server. Jaribu tena.';
+                        msgDiv.style.color = '#ef4444';
+                        msgDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                        msgDiv.style.display = 'block';
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnContent;
+                    });
+                });
+            }
+
             // --- Testimonials Slider Logic ---
             const testimonialFigures = document.querySelectorAll('.testimonial-figure');
             const testimonialDots = document.querySelectorAll('.testimonial-dot');
