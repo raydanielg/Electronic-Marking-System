@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="90" x2="1110" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0088CC" stop-opacity="0.16"/>
+      <stop offset="0.6" stop-color="#005A9E" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FB923C" stop-opacity="0.10"/>
+    </linearGradient>
+    <filter id="shadow" x="-40" y="-40" width="1280" height="820" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#020617" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect x="40" y="40" width="1120" height="620" rx="32" fill="url(#bg)" stroke="#CBD5E1"/>
+
+  <g font-family="Nunito, Arial, sans-serif">
+    <rect x="120" y="95" width="280" height="44" rx="22" fill="rgba(255,255,255,0.75)" stroke="rgba(148,163,184,0.45)"/>
+    <text x="150" y="124" font-weight="900" font-size="16" fill="#0F172A" letter-spacing="2">ROLES AT A GLANCE</text>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Nunito, Arial, sans-serif">
+    <rect x="120" y="175" width="460" height="145" rx="26" fill="#FFFFFF"/>
+    <rect x="620" y="175" width="460" height="145" rx="26" fill="#FFFFFF"/>
+    <rect x="120" y="370" width="460" height="145" rx="26" fill="#FFFFFF"/>
+    <rect x="620" y="370" width="460" height="145" rx="26" fill="#FFFFFF"/>
+  </g>
+
+  <g font-family="Nunito, Arial, sans-serif">
+    <g>
+      <rect x="150" y="205" width="56" height="56" rx="18" fill="rgba(0,136,204,0.12)" stroke="rgba(0,136,204,0.18)"/>
+      <path d="M178 220c10 0 18 8 18 18s-8 18-18 18-18-8-18-18 8-18 18-18Z" fill="#005A9E" opacity="0.85"/>
+      <text x="225" y="230" font-weight="900" font-size="22" fill="#0F172A">Manager</text>
+      <text x="225" y="258" font-weight="700" font-size="16" fill="#475569">Setup exams • Assign users • Approve marks</text>
+    </g>
+
+    <g>
+      <rect x="650" y="205" width="56" height="56" rx="18" fill="rgba(204,51,51,0.10)" stroke="rgba(204,51,51,0.16)"/>
+      <path d="M678 220c10 0 18 8 18 18s-8 18-18 18-18-8-18-18 8-18 18-18Z" fill="#991B1B" opacity="0.85"/>
+      <text x="725" y="230" font-weight="900" font-size="22" fill="#0F172A">Clerk</text>
+      <text x="725" y="258" font-weight="700" font-size="16" fill="#475569">Enter marks • Upload Excel • Submit</text>
+    </g>
+
+    <g>
+      <rect x="150" y="400" width="56" height="56" rx="18" fill="rgba(251,146,60,0.12)" stroke="rgba(251,146,60,0.18)"/>
+      <path d="M178 415c10 0 18 8 18 18s-8 18-18 18-18-8-18-18 8-18 18-18Z" fill="#C2410C" opacity="0.85"/>
+      <text x="225" y="425" font-weight="900" font-size="22" fill="#0F172A">Teacher</text>
+      <text x="225" y="453" font-weight="700" font-size="16" fill="#475569">Review performance • Follow-up support</text>
+    </g>
+
+    <g>
+      <rect x="650" y="400" width="56" height="56" rx="18" fill="rgba(6,95,70,0.10)" stroke="rgba(6,95,70,0.16)"/>
+      <path d="M678 415c10 0 18 8 18 18s-8 18-18 18-18-8-18-18 8-18 18-18Z" fill="#065F46" opacity="0.9"/>
+      <text x="725" y="425" font-weight="900" font-size="22" fill="#0F172A">Admin</text>
+      <text x="725" y="453" font-weight="700" font-size="16" fill="#475569">Governance • Security • System settings</text>
+    </g>
+  </g>
+
+  <g stroke="#94A3B8" stroke-width="6" stroke-linecap="round" opacity="0.85">
+    <path d="M580 248 H620"/>
+    <path d="M580 442 H620"/>
+    <path d="M350 320 V370"/>
+    <path d="M850 320 V370"/>
+  </g>
+
+  <g>
+    <circle cx="580" cy="248" r="10" fill="#0088CC"/>
+    <circle cx="620" cy="248" r="10" fill="#0088CC"/>
+    <circle cx="580" cy="442" r="10" fill="#FB923C"/>
+    <circle cx="620" cy="442" r="10" fill="#FB923C"/>
+    <circle cx="350" cy="320" r="10" fill="#CC3333"/>
+    <circle cx="350" cy="370" r="10" fill="#CC3333"/>
+    <circle cx="850" cy="320" r="10" fill="#065F46"/>
+    <circle cx="850" cy="370" r="10" fill="#065F46"/>
+  </g>
+</svg>

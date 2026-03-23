@@ -713,6 +713,7 @@
                 <div class="submenu">
                     <a href="{{ route('students.index') }}" class="submenu-link">List Students</a>
                     <a href="{{ route('students.create') }}" class="submenu-link">Add Student</a>
+                    <a href="{{ route('students.import-page') }}" class="submenu-link">Import Students</a>
                 </div>
             </div>
 

@@ -59,11 +59,11 @@
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-header bg-white py-3">
-                    <h6 class="card-title mb-0 text-primary fw-bold">Admission & School Information</h6>
+                    <h6 class="card-title mb-0 text-success fw-bold">Admission & School Information</h6>
                 </div>
                 <div class="card-body">
                     <div class="row g-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label small fw-bold">School <span class="text-danger">*</span></label>
                             <select name="school_id" class="form-select @error('school_id') is-invalid @enderror" required>
                                 <option value="">Select School</option>
@@ -73,22 +73,38 @@
                             </select>
                             @error('school_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-bold">PREM Number</label>
-                            <input type="text" name="prem_number" class="form-control @error('prem_number') is-invalid @enderror" value="{{ old('prem_number') }}">
-                            @error('prem_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Education Type <span class="text-danger">*</span></label>
+                            <select name="education_type" id="education_type" class="form-select" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="Nursery">Nursery</option>
+                                <option value="Primary">Primary</option>
+                                <option value="Secondary">Secondary</option>
+                            </select>
                         </div>
                         <div class="col-md-4">
+                            <label class="form-label small fw-bold">Class/Level <span class="text-danger">*</span></label>
+                            <select name="level_id" id="level_id" class="form-select @error('level_id') is-invalid @enderror" required disabled>
+                                <option value="">-- Select Type First --</option>
+                            </select>
+                            @error('level_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Examination Number</label>
+                            <input type="text" name="prem_number" class="form-control @error('prem_number') is-invalid @enderror" value="{{ old('prem_number') }}" placeholder="Enter Exam Number">
+                            @error('prem_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label small fw-bold">Admission Number</label>
                             <input type="text" name="admission_number" class="form-control @error('admission_number') is-invalid @enderror" value="{{ old('admission_number') }}">
                             @error('admission_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label small fw-bold">Admission Date</label>
                             <input type="date" name="admission_date" class="form-control @error('admission_date') is-invalid @enderror" value="{{ old('admission_date') }}">
                             @error('admission_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label small fw-bold">Status <span class="text-danger">*</span></label>
                             <select name="status" class="form-select @error('status') is-invalid @enderror" required>
                                 <option value="Not Admitted" {{ old('status') == 'Not Admitted' ? 'selected' : '' }}>Not Admitted</option>
@@ -100,6 +116,35 @@
                     </div>
                 </div>
             </div>
+
+<script>
+document.getElementById('education_type').addEventListener('change', function() {
+    const type = this.value;
+    const levelSelect = document.getElementById('level_id');
+    
+    if (!type) {
+        levelSelect.innerHTML = '<option value="">-- Select Type First --</option>';
+        levelSelect.disabled = true;
+        return;
+    }
+    
+    levelSelect.innerHTML = '<option value="">Loading...</option>';
+    levelSelect.disabled = true;
+    
+    fetch(`/academic-levels/${type}`)
+        .then(response => response.json())
+        .then(data => {
+            levelSelect.innerHTML = '<option value="">-- Select Class --</option>';
+            data.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level.id;
+                option.textContent = level.name;
+                levelSelect.appendChild(option);
+            });
+            levelSelect.disabled = false;
+        });
+});
+</script>
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-header bg-white py-3">
