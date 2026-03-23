@@ -119,6 +119,25 @@
         background-color: #1e3f64;
         color: white;
     }
+    .btn-login-header {
+        background-color: #cc3333;
+        color: white !important;
+        border-radius: 6px;
+        padding: 8px 20px;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(204, 51, 51, 0.3);
+    }
+    .btn-login-header:hover {
+        background-color: #b32d2d;
+        transform: scale(1.05);
+    }
     .login-link {
         color: #065f46;
         font-weight: 700;
@@ -501,6 +520,9 @@
 </style>
 
 <div class="login-container animate__animated animate__fadeIn">
+    <a href="{{ route('landing') }}" class="btn-login-header" style="position: absolute; top: 20px; right: 20px; z-index: 10;">
+        <i class="fas fa-home"></i> HOME
+    </a>
     <div class="wave-bg">
         <div class="wave-1"></div>
         <div class="wave-2"></div>

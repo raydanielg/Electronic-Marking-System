@@ -284,6 +284,32 @@
     transform: scale(1.02);
 }
 
+@media (max-width: 991px) {
+    .nav-right-actions {
+        display: flex !important;
+        height: auto;
+        padding: 10px;
+        gap: 8px;
+        background: transparent;
+        border-top: none;
+        margin-top: 0;
+        width: auto;
+    }
+    
+    .nav-right-actions .btn-nav-action {
+        padding: 6px 12px;
+        height: 36px;
+        font-size: 0.75rem;
+        border-radius: 4px;
+    }
+
+    .btn-jisajili {
+        background: rgba(255, 255, 255, 0.2);
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+}
+
 .btn-login-nav {
     background: #cc3333;
     color: white !important;

@@ -444,7 +444,7 @@ Route::get('/results/{type}/{year}/{exam}/schools/{school}', function (string $t
     ]);
 })->name('landing.results.school');
 
-Route::middleware(['throttle.login:5,15'])->group(function () {
+Route::middleware([])->group(function () {
     Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -463,10 +463,10 @@ Route::middleware(['throttle.login:5,15'])->group(function () {
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:manager', 'throttle:10,1'])->prefix('auth')->name('auth.')->group(function () {
-    Route::get('/sessions', [App\Http\Controllers\Auth\SessionsController::class, 'index'])->name('sessions');
-    Route::delete('/sessions/{sessionId}', [App\Http\Controllers\Auth\SessionsController::class, 'destroy'])->name('sessions.destroy');
-    Route::post('/sessions/revoke-all', [App\Http\Controllers\Auth\SessionsController::class, 'destroyAll'])->name('sessions.revoke-all');
+Route::middleware(['auth:manager'])->group(function () {
+    Route::get('/auth/sessions', [App\Http\Controllers\Auth\SessionsController::class, 'index'])->name('auth.sessions');
+    Route::delete('/auth/sessions/{sessionId}', [App\Http\Controllers\Auth\SessionsController::class, 'destroy'])->name('auth.sessions.destroy');
+    Route::post('/auth/sessions/revoke-all', [App\Http\Controllers\Auth\SessionsController::class, 'destroyAll'])->name('auth.sessions.revoke-all');
 });
 
 // Dashboard/Home page (requires authentication)
@@ -479,7 +479,6 @@ Route::middleware(['auth:manager'])->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
     Route::post('/profile/delete-request', [ProfileController::class, 'requestDeletion'])
-        ->middleware('throttle.deletion:3,60')
         ->name('profile.delete-request');
     
     // System Settings Routes
