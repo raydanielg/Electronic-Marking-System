@@ -520,3 +520,189 @@
 .footer-bottom a:hover {
     text-decoration: underline;
 }
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    height: 60px;
+    padding: 0 15px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 991px) {
+    /* Ficha header ya juu na middle kwenye simu ili kutoa nafasi */
+    .header-top,
+    .header-middle {
+        display: none !important;
+    }
+
+    .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        background: #0088cc;
+        height: 60px;
+    }
+
+    .header-bottom-nav {
+        background: #0088cc;
+        padding: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex;
+        z-index: 1200;
+        position: relative;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #mainNav {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0088cc;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+        z-index: 1150;
+        padding: 20px 0;
+        box-shadow: none;
+    }
+
+    #mainNav.active {
+        display: flex;
+    }
+
+    .nav-item {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        display: flex;
+    }
+
+    .nav-link {
+        height: auto;
+        min-height: 50px;
+        padding: 15px 25px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: space-between;
+        font-size: 1.1rem;
+        width: 100%;
+    }
+
+    .nav-item:first-child .nav-link {
+        background: rgba(255, 255, 255, 0.1);
+        padding-left: 25px;
+    }
+
+    .nav-link i.fa-chevron-down {
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item.show-dropdown > .nav-link i.fa-chevron-down {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown kwenye mobile */
+    .dropdown-menu-custom {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .nav-item.show-dropdown .dropdown-menu-custom {
+        display: block;
+    }
+
+    .dropdown-item-custom {
+        padding: 15px 25px 15px 45px;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 1rem;
+        display: block;
+    }
+
+    .dropdown-item-custom:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding-left: 45px;
+    }
+
+    .dropdown-item-custom i {
+        color: rgba(255, 255, 255, 0.8);
+        margin-right: 10px;
+    }
+
+    /* Buttons kwenye mobile */
+    .nav-right-actions {
+        width: 100%;
+        flex-direction: row;
+        padding: 20px;
+        gap: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.05);
+        margin-top: auto;
+        display: flex;
+    }
+
+    .btn-nav-action {
+        flex: 1;
+        height: 45px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-link {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-item-custom {
+        padding: 10px 15px 10px 30px;
+        font-size: 0.85rem;
+    }
+
+    .btn-nav-action {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+}
