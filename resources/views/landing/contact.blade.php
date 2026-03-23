@@ -4,7 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Contact Us - EMaS</title>
+    <title>Contact Us - EMaS | Get in Touch for Support & Inquiries</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Contact Us - EMaS | Get in Touch for Support & Inquiries">
+    <meta name="description" content="Have questions about EMaS? Contact our support team for technical assistance, inquiries, or guidance on using the Electronic Marking System in Tanzania.">
+    <meta name="keywords" content="Contact EMaS, EMaS Support, Exam Marking Help, Technical Support Tanzania, Electronic Marking System Contact">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Contact Us - EMaS | Get in Touch for Support & Inquiries">
+    <meta property="og:description" content="Reach out to the EMaS team for any assistance regarding the Electronic Marking System. We are here to help you.">
+    <meta property="og:image" content="{{ asset('hero/analyzing-business-activity.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Contact Us - EMaS | Get in Touch for Support & Inquiries">
+    <meta property="twitter:description" content="Reach out to the EMaS team for any assistance regarding the Electronic Marking System. We are here to help you.">
+    <meta property="twitter:image" content="{{ asset('hero/analyzing-business-activity.jpg') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('eco-e.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('eco-e.png') }}">
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -15,6 +39,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        :root {
+            --primary-color: #2b5a8e;
+            --primary-dark: #1e3f64;
+            --secondary-color: #065f46;
+            --accent-color: #fb923c;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --bg-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+        }
+
         @include('landing.partials.shared-styles')
 
         /* --- Breadcrumb / Page Hero with Network Animation --- */

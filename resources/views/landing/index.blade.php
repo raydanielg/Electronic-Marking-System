@@ -4,7 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>EMaS - Electronic Marking System</title>
+    <title>EMaS - Electronic Marking System | Advanced Exam & Assessment Platform</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="EMaS - Electronic Marking System | Advanced Exam & Assessment Platform">
+    <meta name="description" content="EMaS (Electronic Marking System) is a state-of-the-art digital assessment platform designed for efficient, secure, and accurate marking of examinations in Tanzania. Streamline your academic grading process with EMaS.">
+    <meta name="keywords" content="EMaS, Electronic Marking System, Digital Assessment, Exam Marking Tanzania, Education Technology, Automated Grading, Academic Assessment Platform">
+    <meta name="author" content="EMaS Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="EMaS - Electronic Marking System | Advanced Exam & Assessment Platform">
+    <meta property="og:description" content="Revolutionizing examination marking with precision and speed. EMaS provides a secure digital environment for academic assessment and grading.">
+    <meta property="og:image" content="{{ asset('hero/analyzing-business-activity.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="EMaS - Electronic Marking System | Advanced Exam & Assessment Platform">
+    <meta property="twitter:description" content="Revolutionizing examination marking with precision and speed. EMaS provides a secure digital environment for academic assessment and grading.">
+    <meta property="twitter:image" content="{{ asset('hero/analyzing-business-activity.jpg') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('eco-e.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('eco-e.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

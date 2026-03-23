@@ -25,6 +25,10 @@ Route::get('/contact', function () {
     return view('landing.contact');
 })->name('landing.contact');
 
+Route::get('/sitemap.xml', function () {
+    return response()->view('landing.sitemap')->header('Content-Type', 'text/xml');
+})->name('sitemap');
+
 Route::get('/guidelines', function () {
     return view('landing.guideline');
 })->name('landing.guideline');
