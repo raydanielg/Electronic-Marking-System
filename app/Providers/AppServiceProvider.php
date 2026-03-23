@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\ExamType;
+use App\Models\NewsPost;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -38,6 +39,24 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('navExamTypes', $types);
+        });
+
+        View::composer('landing.partials.footer', function ($view) {
+            $latestNews = collect([]);
+
+            try {
+                if (Schema::hasTable('news_posts')) {
+                    $latestNews = NewsPost::query()
+                        ->where('is_published', true)
+                        ->orderByDesc('published_at')
+                        ->limit(3)
+                        ->get(['title', 'slug', 'published_at']);
+                }
+            } catch (\Throwable $e) {
+                $latestNews = collect([]);
+            }
+
+            $view->with('footerLatestNews', $latestNews);
         });
     }
 }

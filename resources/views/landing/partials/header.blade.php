@@ -82,10 +82,10 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">News <span class="new-label">NEW</span></a>
+                        <a href="{{ route('landing.news.index') }}" class="nav-link">News <span class="new-label">NEW</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Tafiti <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
+                        <a href="{{ route('landing.tafiti.index') }}" class="nav-link">Tafiti <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="nav-link">Staff Portal</a>

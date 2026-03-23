@@ -31,8 +31,8 @@
                 <ul class="footer-links">
                     <li><a href="{{ route('landing.guideline') }}"><i class="fas fa-angle-right"></i> Guidelines</a></li>
                     <li><a href="{{ route('landing.materials') }}"><i class="fas fa-angle-right"></i> Materials</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i> News</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i> Research (Tafiti)</a></li>
+                    <li><a href="{{ route('landing.news.index') }}"><i class="fas fa-angle-right"></i> News</a></li>
+                    <li><a href="{{ route('landing.tafiti.index') }}"><i class="fas fa-angle-right"></i> Research (Tafiti)</a></li>
                     <li><a href="{{ route('login') }}"><i class="fas fa-angle-right"></i> Staff Portal</a></li>
                 </ul>
             </div>

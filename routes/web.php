@@ -5,6 +5,9 @@ use App\Http\Controllers\Manager\SchoolController;
 use App\Http\Controllers\Manager\ProfileController;
 use App\Http\Controllers\Manager\SettingController;
 use App\Http\Controllers\Manager\StudentController;
+use App\Models\NewsPost;
+use App\Models\ResearchPost;
+use Illuminate\Support\Facades\Schema;
 
 // Landing page
 Route::get('/', function () {
@@ -26,6 +29,82 @@ Route::get('/guidelines', function () {
 Route::get('/materials', function () {
     return view('landing.materials');
 })->name('landing.materials');
+
+Route::get('/news', function () {
+    $posts = collect([]);
+
+    try {
+        if (Schema::hasTable('news_posts')) {
+            $posts = NewsPost::query()
+                ->where('is_published', true)
+                ->orderByDesc('published_at')
+                ->get();
+        }
+    } catch (\Throwable $e) {
+        $posts = collect([]);
+    }
+
+    return view('landing.news.index', ['posts' => $posts]);
+})->name('landing.news.index');
+
+Route::get('/news/{slug}', function (string $slug) {
+    abort_unless(Schema::hasTable('news_posts'), 404);
+
+    $post = NewsPost::query()
+        ->where('is_published', true)
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+    $related = NewsPost::query()
+        ->where('is_published', true)
+        ->where('id', '!=', $post->id)
+        ->orderByDesc('published_at')
+        ->limit(3)
+        ->get(['title', 'slug', 'cover_image', 'published_at']);
+
+    return view('landing.news.show', [
+        'post' => $post,
+        'related' => $related,
+    ]);
+})->name('landing.news.show');
+
+Route::get('/tafiti', function () {
+    $items = collect([]);
+
+    try {
+        if (Schema::hasTable('research_posts')) {
+            $items = ResearchPost::query()
+                ->where('is_published', true)
+                ->orderByDesc('published_at')
+                ->get();
+        }
+    } catch (\Throwable $e) {
+        $items = collect([]);
+    }
+
+    return view('landing.tafiti.index', ['items' => $items]);
+})->name('landing.tafiti.index');
+
+Route::get('/tafiti/{slug}', function (string $slug) {
+    abort_unless(Schema::hasTable('research_posts'), 404);
+
+    $item = ResearchPost::query()
+        ->where('is_published', true)
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+    $related = ResearchPost::query()
+        ->where('is_published', true)
+        ->where('id', '!=', $item->id)
+        ->orderByDesc('published_at')
+        ->limit(3)
+        ->get(['title', 'slug', 'cover_image', 'published_at']);
+
+    return view('landing.tafiti.show', [
+        'item' => $item,
+        'related' => $related,
+    ]);
+})->name('landing.tafiti.show');
 
 Route::get('/examinations', function () {
     $exams = collect([
@@ -358,7 +437,18 @@ Route::get('/results/{type}/{year}/{exam}/schools/{school}', function (string $t
     ]);
 })->name('landing.results.school');
 
-Auth::routes();
+Auth::routes(['register' => false, 'reset' => false]);
+
+Route::middleware(['throttle.login:5,15'])->group(function () {
+    Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+});
+
+Route::middleware(['auth:manager', 'throttle:10,1'])->prefix('auth')->name('auth.')->group(function () {
+    Route::get('/sessions', [App\Http\Controllers\Auth\SessionsController::class, 'index'])->name('sessions');
+    Route::delete('/sessions/{sessionId}', [App\Http\Controllers\Auth\SessionsController::class, 'destroy'])->name('sessions.destroy');
+    Route::post('/sessions/revoke-all', [App\Http\Controllers\Auth\SessionsController::class, 'destroyAll'])->name('sessions.revoke-all');
+});
 
 // Dashboard/Home page (requires authentication)
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -369,7 +459,9 @@ Route::middleware(['auth:manager'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
-    Route::post('/profile/delete-request', [ProfileController::class, 'requestDeletion'])->name('profile.delete-request');
+    Route::post('/profile/delete-request', [ProfileController::class, 'requestDeletion'])
+        ->middleware('throttle.deletion:3,60')
+        ->name('profile.delete-request');
     
     // System Settings Routes
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
