@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EMaS - {{ isset($pageTitle) ? $pageTitle : 'Dashboard' }}</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('eco-e.png') }}">
     
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap">

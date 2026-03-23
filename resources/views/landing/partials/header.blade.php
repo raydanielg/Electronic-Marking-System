@@ -23,7 +23,7 @@
     <div class="container">
         <div class="header-middle">
             <div class="gov-emblem-left">
-                <img src="{{ asset('Coat_of_arms_of_Tanzania.svg.png') }}" alt="Coat of Arms" class="img-fluid">
+                <img src="{{ asset('eco-e.png') }}" alt="EMaS" class="img-fluid">
             </div>
             <div class="header-middle-text">
                 <div class="gov-text-top">Jamhuri ya Muungano wa Tanzania</div>
@@ -31,7 +31,7 @@
                 <div class="gov-text-bottom">Electronic Marking System (EMaS)</div>
             </div>
             <div class="gov-emblem-right">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Flag_of_Tanzania.svg/1200px-Flag_of_Tanzania.svg.png" alt="Tanzania Flag" class="img-fluid" style="border-radius: 5px;">
+                <img src="{{ asset('Coat_of_arms_of_Tanzania.svg.png') }}" alt="Coat of Arms" class="img-fluid" style="border-radius: 5px;">
             </div>
         </div>
     </div>
@@ -39,68 +39,103 @@
     <div class="header-bottom-nav">
         <div class="container">
             <nav class="nav-container">
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="{{ route('landing') }}" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-menu-custom">
-                            <a href="{{ route('landing.about') }}" class="dropdown-item-custom">Kuhusu EMaS</a>
-                            <a href="{{ route('landing.about') }}#history" class="dropdown-item-custom">Historia yetu</a>
-                            <a href="{{ route('landing.about') }}#vision" class="dropdown-item-custom">Dira &amp; Dhima</a>
-                            <a href="{{ route('landing.about') }}#contact" class="dropdown-item-custom">Wasiliana Nasi</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.contact') }}" class="nav-link">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.guideline') }}" class="nav-link">Guideline</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.materials') }}" class="nav-link">Materials</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.examinations.index') }}" class="nav-link">Examinations <span class="hot-label">HOT</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Results <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
-                        <div class="dropdown-menu-custom">
-                            @if(isset($navExamTypes) && $navExamTypes->count())
-                                @foreach($navExamTypes as $t)
-                                    <a href="{{ route('landing.results.type', $t->slug) }}" class="dropdown-item-custom">
-                                        <i class="fas fa-file-alt"></i> {{ $t->name }} Results
-                                    </a>
-                                @endforeach
-                            @else
-                                <a href="#" class="dropdown-item-custom"><i class="fas fa-file-alt"></i> Mock Results</a>
-                                <a href="#" class="dropdown-item-custom"><i class="fas fa-users"></i> Joint Results</a>
-                                <a href="#" class="dropdown-item-custom"><i class="fas fa-calendar-alt"></i> Midterm Results</a>
-                                <a href="#" class="dropdown-item-custom"><i class="fas fa-graduation-cap"></i> Annual Results</a>
-                            @endif
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.news.index') }}" class="nav-link">News <span class="new-label">NEW</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('landing.tafiti.index') }}" class="nav-link">Tafiti <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link">Staff Portal</a>
-                    </li>
-                </ul>
+                <button type="button" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="landing-nav">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
 
-                <div class="nav-right-actions">
-                    <a href="{{ route('register') }}" class="btn-nav-action btn-jisajili">
-                        <i class="fas fa-user-plus"></i> JISAJILI
-                    </a>
-                    <a href="{{ route('login') }}" class="btn-nav-action btn-login-nav">
-                        <i class="fas fa-sign-in-alt"></i> LOGIN
-                    </a>
+                <div class="nav-collapse" id="landing-nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('landing') }}" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item nav-item-has-dropdown">
+                            <a href="#" class="nav-link nav-link-dropdown">About Us <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu-custom">
+                                <a href="{{ route('landing.about') }}" class="dropdown-item-custom">Kuhusu EMaS</a>
+                                <a href="{{ route('landing.about') }}#history" class="dropdown-item-custom">Historia yetu</a>
+                                <a href="{{ route('landing.about') }}#vision" class="dropdown-item-custom">Dira &amp; Dhima</a>
+                                <a href="{{ route('landing.about') }}#contact" class="dropdown-item-custom">Wasiliana Nasi</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.contact') }}" class="nav-link">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.guideline') }}" class="nav-link">Guideline</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.materials') }}" class="nav-link">Materials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.examinations.index') }}" class="nav-link">Examinations <span class="hot-label">HOT</span></a>
+                        </li>
+                        <li class="nav-item nav-item-has-dropdown">
+                            <a href="#" class="nav-link nav-link-dropdown">Results <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
+                            <div class="dropdown-menu-custom">
+                                @if(isset($navExamTypes) && $navExamTypes->count())
+                                    @foreach($navExamTypes as $t)
+                                        <a href="{{ route('landing.results.type', $t->slug) }}" class="dropdown-item-custom">
+                                            <i class="fas fa-file-alt"></i> {{ $t->name }} Results
+                                        </a>
+                                    @endforeach
+                                @else
+                                    <a href="#" class="dropdown-item-custom"><i class="fas fa-file-alt"></i> Mock Results</a>
+                                    <a href="#" class="dropdown-item-custom"><i class="fas fa-users"></i> Joint Results</a>
+                                    <a href="#" class="dropdown-item-custom"><i class="fas fa-calendar-alt"></i> Midterm Results</a>
+                                    <a href="#" class="dropdown-item-custom"><i class="fas fa-graduation-cap"></i> Annual Results</a>
+                                @endif
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.news.index') }}" class="nav-link">News <span class="new-label">NEW</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('landing.tafiti.index') }}" class="nav-link">Tafiti <i class="fas fa-chevron-down"></i> <span class="new-label">NEW</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link">Staff Portal</a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-right-actions">
+                        <a href="{{ route('register') }}" class="btn-nav-action btn-jisajili">
+                            <i class="fas fa-user-plus"></i> JISAJILI
+                        </a>
+                        <a href="{{ route('login') }}" class="btn-nav-action btn-login-nav">
+                            <i class="fas fa-sign-in-alt"></i> LOGIN
+                        </a>
+                    </div>
                 </div>
             </nav>
         </div>
     </div>
 </header>
+
+<script>
+    (function () {
+        const header = document.querySelector('.main-header');
+        if (!header) return;
+
+        const toggle = header.querySelector('.nav-toggle');
+        const nav = header.querySelector('#landing-nav');
+        if (!toggle || !nav) return;
+
+        toggle.addEventListener('click', function () {
+            const isOpen = header.classList.toggle('nav-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        header.querySelectorAll('.nav-item-has-dropdown > .nav-link-dropdown').forEach((link) => {
+            link.addEventListener('click', function (e) {
+                if (window.matchMedia('(max-width: 992px)').matches) {
+                    e.preventDefault();
+                    const parent = link.closest('.nav-item-has-dropdown');
+                    if (!parent) return;
+                    parent.classList.toggle('dropdown-open');
+                }
+            });
+        });
+    })();
+</script>
