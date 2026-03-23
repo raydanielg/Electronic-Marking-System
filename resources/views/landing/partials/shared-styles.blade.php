@@ -6,13 +6,21 @@
     box-shadow: none;
 }
 
+.desktop-only {
+    display: inline-block;
+}
+
+.mobile-top-show {
+    display: none;
+}
+
 .header-top {
     background: #0088cc;
-    padding: 12px 20px;
+    padding: 8px 20px;
     color: white;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
@@ -28,12 +36,6 @@
     gap: 10px;
     width: 100%;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-
-.header-top-content::-webkit-scrollbar {
-    display: none;
 }
 
 .top-menu-links {
@@ -51,24 +53,30 @@
     font-size: 0.75rem;
     font-weight: 600;
     white-space: nowrap;
-    padding: 5px 8px;
+    padding: 4px 8px;
     border-radius: 4px;
 }
 
-.header-top-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
+.login-link-top {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .top-search-container {
     background: white;
     border-radius: 50px;
-    padding: 4px 15px;
+    padding: 2px 12px;
     display: flex;
     align-items: center;
     margin-left: 15px;
     flex-shrink: 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.top-search-container form {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .top-search-input {
@@ -76,7 +84,8 @@
     outline: none;
     font-size: 0.75rem;
     padding: 4px;
-    width: 120px;
+    width: 180px;
+    background: transparent;
 }
 
 .top-search-btn {
@@ -84,19 +93,26 @@
     border: none;
     color: #0088cc;
     font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0 5px;
 }
 
 .header-middle {
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.gov-emblem-left,
+.gov-emblem-left {
+    width: 60px;
+}
+
 .gov-emblem-right {
-    width: 80px;
+    width: 60px;
 }
 
 .header-middle-text {
@@ -104,24 +120,24 @@
 }
 
 .gov-text-top {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #003366;
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+
+.gov-text-middle {
+    font-size: 0.85rem;
+    color: #cc3333;
     font-weight: 600;
     margin-bottom: 2px;
 }
 
-.gov-text-middle {
-    font-size: 0.95rem;
-    color: #cc3333;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
 .gov-text-bottom {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #003366;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .header-bottom-nav {
@@ -325,6 +341,192 @@
     0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
     100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+/* ========== NEW MOBILE MENU STYLES (MATCHING IMAGE) ========== */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c0c54;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #4ade80;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-menu-card {
+    background-color: #d1d5db;
+    border-radius: 15px;
+    padding: 30px 20px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.mobile-menu-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mobile-menu-logo img {
+    width: 120px;
+    height: auto;
+}
+
+.mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-item {
+    margin-bottom: 5px;
+}
+
+.mobile-menu-link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mobile-menu-link {
+    display: block;
+    padding: 12px 0;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.mobile-menu-link.active {
+    color: #84cc16;
+}
+
+.mobile-menu-link:hover {
+    color: #2563eb;
+}
+
+.dropdown-icon {
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-item.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.mobile-submenu {
+    list-style: none;
+    padding-left: 15px;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.mobile-menu-item.active .mobile-submenu {
+    display: block;
+}
+
+.mobile-submenu li a {
+    display: block;
+    padding: 8px 0;
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    font-size: 1.25rem;
+    color: white;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    z-index: 1100;
+}
+
+@media (max-width: 991px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-top-show {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .header-top {
+        padding: 10px 15px;
+        border-radius: 0 0 30px 30px;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .header-top-content {
+        justify-content: space-around;
+    }
+
+    .top-menu-links {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .header-middle {
+        padding: 10px 10px;
+    }
+
+    .gov-emblem-left, .gov-emblem-right {
+        width: 45px;
+    }
+
+    .gov-text-top { font-size: 0.65rem; }
+    .gov-text-middle { font-size: 0.7rem; }
+    .gov-text-bottom { font-size: 1.1rem; }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-menu, .nav-right-actions {
+        display: none;
+    }
 }
 
 /* Footer */

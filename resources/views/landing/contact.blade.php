@@ -15,26 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        :root {
-            --primary-color: #2b5a8e;
-            --primary-dark: #1e3f64;
-            --secondary-color: #065f46;
-            --accent-color: #fb923c;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --bg-light: #f8fafc;
-            --bg-gray: #e5e7eb;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            background: #ffffff;
-        }
-
         @include('landing.partials.shared-styles')
 
         /* --- Breadcrumb / Page Hero with Network Animation --- */
